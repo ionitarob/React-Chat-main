@@ -1,3 +1,6 @@
+// src/components/Chat.js
+
+// Importa las bibliotecas necesarias
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
@@ -6,7 +9,9 @@ import RoomList from './RoomList';
 import { useUser } from '../UserContext';
 import '../App.css';
 
+// Componente funcional Chat
 const Chat = () => {
+  // Hooks de estado y contexto
   const location = useLocation();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -16,8 +21,10 @@ const Chat = () => {
   const [selectedMessageIndex, setSelectedMessageIndex] = useState(null);
   const { user, setUser } = useUser();
 
+  // Instancia de Firestore
   const firestore = firebase.firestore();
 
+  // Efecto para cargar mensajes y suscribirse a cambios
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const roomParam = queryParams.get('room');
@@ -38,6 +45,7 @@ const Chat = () => {
     return () => unsubscribe();
   }, [location.search, firestore, user, setUser]);
 
+  // Función para enviar mensajes
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
       const roomRef = firestore.collection('rooms').doc(room);
@@ -62,16 +70,19 @@ const Chat = () => {
     }
   };
 
+  // Función para responder citando un mensaje
   const handleQuoteReply = (message) => {
     setQuoteMessage(message);
     setShowQuoteMenu(false);
   };
 
+  // Función para mostrar/ocultar el menú de citar
   const toggleQuoteMenu = (index) => {
     setShowQuoteMenu(!showQuoteMenu);
     setSelectedMessageIndex(index);
   };
 
+  // Función para cambiar el nombre de usuario
   const handleChangeUsername = () => {
     const newUsername = prompt('Ingresa tu nuevo nombre de usuario:');
     if (newUsername) {
@@ -82,6 +93,7 @@ const Chat = () => {
     }
   };
 
+  // Función para crear una nueva sala
   const handleCreateRoom = () => {
     const newRoomName = prompt('Ingresa el nombre de la nueva sala:');
     if (newRoomName) {
@@ -91,12 +103,14 @@ const Chat = () => {
     }
   };
 
+  // Función para manejar la pulsación de tecla Enter
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSendMessage();
     }
   };
 
+  // Renderizado del componente Chat
   return (
     <div className="chat-container">
       <div className="header">
@@ -160,7 +174,7 @@ const Chat = () => {
     </div>
   );
 };
-
+// Exporta el componente Chat
 export default Chat;
 
 

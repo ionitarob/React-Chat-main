@@ -1,12 +1,18 @@
+// src/components/CreateRoom.js
+
+// Importa las bibliotecas necesarias
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
+// Componente funcional CreateRoom
 const CreateRoom = () => {
+  // Hooks de estado y navegación
   const [newRoom, setNewRoom] = useState('');
   const navigate = useNavigate();
 
+  // Función para crear una nueva sala
   const handleCreateRoom = async () => {
     if (newRoom.trim() !== '') {
       const roomRef = firebase.firestore().collection('rooms').doc(newRoom);
@@ -22,6 +28,7 @@ const CreateRoom = () => {
     }
   };
 
+  // Renderizado del componente CreateRoom
   return (
     <div className="create-room-container">
       <h2>Crear Nueva Sala</h2>
@@ -37,4 +44,6 @@ const CreateRoom = () => {
   );
 }
 
+// Exporta el componente CreateRoom
 export default CreateRoom;
+

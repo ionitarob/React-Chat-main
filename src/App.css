@@ -7,46 +7,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos toda la pantalla */
 }
 
 .join-container {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Color de fondo del contenedor de unirse a la sala */
 }
 
 .join-container h1,
 .chat-container h1 {
-  color: #ffffff;
+  color: #ffffff; /* Color del texto de los encabezados */
 }
 
 .join-container div,
 .chat-container div {
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Espaciado inferior para elementos de div */
 }
 
 .join-container input,
 .chat-container input,
 .join-container select {
-  padding: 10px;
-  margin: 5px;
-  width: 200px;
+  padding: 10px; /* Relleno interno para campos de entrada y selección */
+  margin: 5px; /* Margen exterior para campos de entrada, selección y elementos de div */
+  width: 200px; /* Ancho predeterminado para campos de entrada y selección */
 }
 
 .join-container button,
 .chat-container button,
 .create-room-button {
-  padding: 10px;
-  background-color: #3c0081;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  padding: 10px; /* Relleno interno para botones */
+  background-color: #3c0081; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Sin borde para el botón */
+  cursor: pointer; /* Cursor apuntador para indicar que el botón es interactivo */
+  transition: background-color 0.3s; /* Transición suave del color de fondo al pasar el ratón */
 }
 
 .join-container button:hover,
 .chat-container button:hover,
 .create-room-button:hover {
-  background-color: #000000;
+  background-color: #000000; /* Cambio de color de fondo al pasar el ratón */
 }
 
 /* Estilos específicos para el componente Chat.js */
@@ -59,19 +59,19 @@
 }
 
 .chat-container .header {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Espaciado inferior para el encabezado del chat */
 }
 
 .chat-container {
   background: linear-gradient(45deg, #003366, #990099); /* Establece el color inicial del fondo */
-  color: white;
+  color: white; /* Establece el color del texto dentro del contenedor de chat */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
-  animation: gradientAnimation 10s infinite; /* Cambia la duración según tus preferencias */
-  background-size: 200% 200%; /* Añade esto para asegurarte de que el fondo se extienda más allá de la pantalla */
+  height: 80vh; /* Ajusta la altura según tus preferencias */
+  animation: gradientAnimation 10s infinite; /* Animación del fondo con gradiente */
+  background-size: 200% 200%; /* Ajusta el tamaño del fondo */
 }
 
 @keyframes gradientAnimation {
