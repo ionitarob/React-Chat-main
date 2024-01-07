@@ -1,11 +1,13 @@
 /* src/App.css */
+
+/* Estilos generales para los contenedores */
 .join-container,
 .chat-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Usamos min-height para asegurarnos de que al menos ocupe toda la pantalla */
+  min-height: 100vh;
 }
 
 .join-container {
@@ -14,7 +16,7 @@
 
 .join-container h1,
 .chat-container h1 {
-  color: #000000;
+  color: #ffffff;
 }
 
 .join-container div,
@@ -31,7 +33,8 @@
 }
 
 .join-container button,
-.chat-container button {
+.chat-container button,
+.create-room-button {
   padding: 10px;
   background-color: #3c0081;
   color: white;
@@ -41,38 +44,54 @@
 }
 
 .join-container button:hover,
-.chat-container button:hover {
+.chat-container button:hover,
+.create-room-button:hover {
   background-color: #000000;
 }
 
 /* Estilos específicos para el componente Chat.js */
-.chat-container {
-  background-color: #282c34;
-  color: white;
+.chat-container .chat-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh; /* Ajusta la altura según tus preferencias */
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px; /* Agrega un poco de espacio entre el chat box y la lista de salas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra alrededor del chat box */
 }
 
 .chat-container .header {
   margin-bottom: 20px;
 }
 
-.chat-content {
+.chat-container {
+  background: linear-gradient(45deg, #003366, #990099); /* Establece el color inicial del fondo */
+  color: white;
   display: flex;
-  width: 100%;
-  max-width: 800px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  animation: gradientAnimation 10s infinite; /* Cambia la duración según tus preferencias */
+  background-size: 200% 200%; /* Añade esto para asegurarte de que el fondo se extienda más allá de la pantalla */
 }
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 .room-list-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-right: 20px;
-  max-height: 300px; /* Establece la altura máxima deseada */
-  overflow-y: auto; /* Agrega scroll vertical si es necesario */
 }
 
 .room-list {
@@ -85,6 +104,8 @@
 .room-list h2 {
   margin: 0;
   font-size: 18px;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
 .room-list ul {
@@ -97,80 +118,17 @@
 }
 
 .room-list li a {
-  color: #a200ff; /* Color deseado para los nombres de las salas */
+  color: #a200ff;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .room-list li a:hover {
-  color: #cbb5f3; /* Color al pasar el mouse sobre los nombres de las salas */
+  color: #cbb5f3;
 }
 
-.room-list button {
-  margin-top: 10px;
-  padding: 8px;
-  background-color: #4fcaca;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.room-list button:hover {
-  background-color: #51bbc9;
-}
-
-.message-container {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 20px;
-  border: 1px solid #000000;
-  padding: 10px;
-  background-color: #5b5b5b;
-  width: 50%;
-  height: 88%; /* Ajusta la altura del cuadro de mensajes según tus preferencias */
-}
-
-.input-container {
-  display: flex;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
-}
-/* Añade esto a tu archivo App.css o Chat.css */
-.room-list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 20px;
-}
-
-.room-list {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.room-list h2 {
-  margin: 0;
-  font-size: 18px;
-  color: #ffffff; /* Color más atractivo para el nombre de la sala */
-  text-transform: uppercase; /* Convierte el texto a mayúsculas */
-}
-
-.room-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.room-list li {
-  margin-bottom: 5px;
-}
-
-.room-list button {
+.room-list button,
+.create-room-button {
   margin-top: 10px;
   padding: 8px;
   background-color: #49bcc0;
@@ -180,23 +138,9 @@
   transition: background-color 0.3s;
 }
 
-.room-list button:hover {
-  background-color: #45a049;
-}
-
-/* Agrega este estilo para el botón de crear sala */
-.create-room-button {
-  margin-top: 10px;
-  padding: 8px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
+.room-list button:hover,
 .create-room-button:hover {
-  background-color: #2980b9;
+  background-color: #45a049;
 }
 
 .input-container {
@@ -206,13 +150,13 @@
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  background-color: #422c50; /* Color de fondo del cuadro de entrada */
-  padding: 10px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
+  background-color: #422c50;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .input-container input {
-  flex: 1; /* El campo de entrada ocupa todo el espacio disponible */
+  flex: 1;
   padding: 8px;
   margin-right: 10px;
   border: none;
@@ -240,16 +184,18 @@
   padding: 10px;
   background-color: #5b5b5b;
   width: 50%;
-  height: 88%;
-  border-radius: 5px; /* Bordes redondeados */
+  max-height: 70vh; /* Establece el tamaño máximo en viewport height (vh) */
+  overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+  border-radius: 5px;
 }
-
 .message {
-  background-color: #343536; /* Fondo de cada mensaje */
+  background-color: #343536;
   color: white;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px; /* Bordes redondeados */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para profundidad */
+  position: relative; /* Añade posición relativa para que podamos posicionar los botones absolutamente */
 }
 
 .message button {
@@ -260,8 +206,84 @@
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: 10px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
 .message button:hover {
   background-color: #000000;
+}
+
+.quote-reply {
+  background-color: #4a3756; /* Color gris claro para el mensaje citado */
+  color: #ffffff; /* Color de texto oscuro para que sea legible */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  .chat-container {
+    height: 100vh;
+  }
+
+  .chat-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .room-list-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .message-container {
+    width: 90%;
+  }
+
+  .input-container {
+    width: 90%;
+  }
+}
+
+/* Estilos para tabletas */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .chat-container {
+    height: 100vh;
+  }
+
+  .chat-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .room-list-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .message-container {
+    width: 90%;
+  }
+
+  .input-container {
+    width: 90%;
+  }
+}
+
+.join-container {
+  background: linear-gradient(45deg, #6a1b9a, #8e24aa, #7b1fa2, #4a148c);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 400%;
+  }
 }
